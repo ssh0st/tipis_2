@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Калькулятор АТС — модель авиационной транспортной системы</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">Калькулятор <span class="mvar">АТС</span> · системно-динамическая модель</div>
+
+    <nav class="menubar">
+      <div class="menu">
+        <button type="button">Ввод данных ▾</button>
+        <div class="dropdown">
+          <button type="button" data-action="go-main">Настройки расчёта</button>
+          <button type="button" data-action="go-inits">Начальные условия X(t₀)</button>
+          <button type="button" data-action="go-facs">Внешние факторы F(t)</button>
+          <button type="button" data-action="go-fks">Полиномы f₁…f₃₆</button>
+          <button type="button" data-action="go-obs">Фактические данные</button>
+          <button type="button" data-action="test-all">Тестовые данные (все 10)</button>
+        </div>
+      </div>
+      <div class="menu">
+        <button type="button">Формулы ▾</button>
+        <div class="dropdown">
+          <button type="button" data-action="about">О модели</button>
+          <button type="button" data-action="eqs">Система уравнений (1)</button>
+          <button type="button" data-action="fmodal-factors">Факторы: полиномы F(t)</button>
+          <button type="button" data-action="fmodal-fks">Полиномы f₁…f₃₆</button>
+          <button type="button" data-action="method">Численный метод</button>
+        </div>
+      </div>
+      <div class="menu">
+        <button type="button">Результаты ▾</button>
+        <div class="dropdown">
+          <button type="button" data-action="view-chart">График</button>
+          <button type="button" data-action="view-table">Таблица значений</button>
+          <button type="button" data-action="view-errors">Погрешности MAE·СКО·MAPE</button>
+          <button type="button" data-action="csv">Экспорт CSV</button>
+        </div>
+      </div>
+      <div class="menu">
+        <button type="button">Вид ▾</button>
+        <div class="dropdown">
+          <button type="button" data-action="theme">Тёмная / светлая тема</button>
+          <button type="button" data-action="reset">Сброс настроек</button>
+        </div>
+      </div>
+    </nav>
+
+    <div class="topactions">
+      <button id="runBtn" class="btn">↻ Пересчитать</button>
+    </div>
+  </header>
+
+  <div class="app">
+    <aside id="sidebar" class="pane"></aside>
+    <main id="mainview">
+      <section id="v-chart" class="view visible">
+        <div class="chartcard"><canvas id="chart"></canvas></div>
+        <div id="chartControls"></div>
+      </section>
+      <section id="v-table" class="view">
+        <div class="tablewrap"><table id="dataTable"></table></div>
+      </section>
+      <section id="v-errors" class="view">
+        <div class="tablewrap"><div id="errorsView"></div></div>
+      </section>
+    </main>
+  </div>
+
+  <div id="modal" class="overlay hidden" role="dialog" aria-modal="true">
+    <div class="modal">
+      <div class="modal-head">
+        <span id="modalTitle"></span>
+        <button id="modalClose" type="button" title="Закрыть">✕</button>
+      </div>
+      <div id="modalBody" class="modal-body"></div>
+    </div>
+  </div>
+
+  <script src="js/model.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
